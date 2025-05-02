@@ -5,6 +5,7 @@
 package br.com.ifba.atividade03.view;
 
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,7 +49,7 @@ public class Calculadora extends javax.swing.JFrame {
         spnAnoNacimento.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
 
         btnCalcularIdade.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        btnCalcularIdade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br.com.ifba.atividade03.imagens/calculadoraicone.png"))); // NOI18N
+        btnCalcularIdade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/atividade03/imagens/calculadoraicone.png"))); // NOI18N
         btnCalcularIdade.setText("CALCULAR IDADE");
         btnCalcularIdade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +65,7 @@ public class Calculadora extends javax.swing.JFrame {
         lblNomeIdade.setFont(new java.awt.Font("Liberation Sans", 0, 30)); // NOI18N
         lblNomeIdade.setText("Idade: ");
 
-        lblImagemPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br.com.ifba.atividade03.imagens/perfilicon.png"))); // NOI18N
+        lblImagemPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/atividade03/imagens/perfilicon.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,15 +82,14 @@ public class Calculadora extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNomeIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblResultadoIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnCalcularIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblImagemPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(114, 114, 114)
+                                .addComponent(lblResultadoIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCalcularIdade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblImagemPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(93, 93, 93))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,9 +129,11 @@ public class Calculadora extends javax.swing.JFrame {
     */
     private void btnCalcularIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularIdadeActionPerformed
           LocalDate dataAtual = LocalDate.now();
-          int idade = dataAtual.getYear() - (Integer) spnAnoNacimento.getValue();
+          int idade = dataAtual.getYear() - (Integer)spnAnoNacimento.getValue();
           if(idade < 0){
               lblResultadoIdade.setText("0");
+              JOptionPane.showMessageDialog(null, "Calma aí viajante no tempo!");
+              spnAnoNacimento.setValue(dataAtual.getYear());
           }else{
               lblResultadoIdade.setText(Integer.toString(idade));
           }
