@@ -47,6 +47,11 @@ public class Calculadora extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         spnAnoNacimento.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        spnAnoNacimento.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnAnoNacimentoStateChanged(evt);
+            }
+        });
 
         btnCalcularIdade.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         btnCalcularIdade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/atividade03/imagens/calculadoraicone.png"))); // NOI18N
@@ -132,12 +137,24 @@ public class Calculadora extends javax.swing.JFrame {
           int idade = dataAtual.getYear() - (Integer)spnAnoNacimento.getValue();
           if(idade < 0){
               lblResultadoIdade.setText("0");
-              JOptionPane.showMessageDialog(null, "Calma aí viajante no tempo!");
+              //JOptionPane.showMessageDialog(null, "Calma aí viajante no tempo!");
+              JOptionPane.showMessageDialog(null, "VOCÊ NÂO È VIAJANTE NO TEMPO!", "QUERIDO USÚARIO", HEIGHT);
               spnAnoNacimento.setValue(dataAtual.getYear());
           }else{
               lblResultadoIdade.setText(Integer.toString(idade));
           }
     }//GEN-LAST:event_btnCalcularIdadeActionPerformed
+
+    private void spnAnoNacimentoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnAnoNacimentoStateChanged
+            LocalDate dataAtual = LocalDate.now();
+            
+            int anoAtual = dataAtual.getYear();
+            int anoSelecionado = (Integer) spnAnoNacimento.getValue();
+
+            if (anoSelecionado > anoAtual) {
+                spnAnoNacimento.setValue(anoAtual);
+            }
+    }//GEN-LAST:event_spnAnoNacimentoStateChanged
 
     /**
      * @param args the command line arguments
