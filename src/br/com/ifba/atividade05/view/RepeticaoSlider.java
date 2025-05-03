@@ -10,10 +10,20 @@ import javax.swing.JOptionPane;
  *
  * @author igo2
  */
+
+/**
+ * Classe RepeticaoSlider que cria uma interface gráfica para controlar uma contagem
+ * usando sliders para definir o início, o fim e o passo da contagem.
+ */
 public class RepeticaoSlider extends javax.swing.JFrame {
 
     /**
      * Creates new form RepeticaoSlider
+     */
+    
+      /**
+     * Construtor que inicializa os componentes da interface
+     * e define os valores iniciais dos labels.
      */
     public RepeticaoSlider() {
         initComponents();
@@ -187,57 +197,95 @@ public class RepeticaoSlider extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+     /**
+     * Método chamado quando o slider de início é alterado.
+     * Atualiza o label de início e ajusta os valores máximos do slider de passo.
+     *
+     */
+    
     private void sldInicioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldInicioStateChanged
         // TODO add your handling code here:
-       
+       //Pega os valores de inicio e fim 
         int inicio = sldInicio.getValue();
         int fim = sldFim.getValue();
-        
-        if(fim >= inicio){
-            lblInicio.setText(Integer.toString(inicio));
-            sldPasso.setMaximum(fim - inicio);
 
-        }else{
-            sldInicio.setValue(fim - 1);
-           // JOptionPane.showMessageDialog(null, "Seu Início não pode ser maior que o fim!");
+        /**
+         * Compara se o início é maior que o fim 
+         * caso seja, faz a alteração no fim.
+          */
+        if (inicio >= fim) {
+            fim = inicio + 1;
+            sldFim.setValue(fim); 
         }
+        /** 
+         * Mostra o valor de inicio e define o número máximo de passos
+         */
+        lblInicio.setText(Integer.toString(inicio));
+        int maxPasso = Math.max(fim - inicio, 1);
+        sldPasso.setMaximum(maxPasso);
         
     }//GEN-LAST:event_sldInicioStateChanged
-
+    
+     /**
+     * Método chamado quando o slider de fim é alterado.
+     * Atualiza o label de fim e ajusta os valores máximos do slider de passo.
+     */
     private void sldFimStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldFimStateChanged
         // TODO add your handling code here:
         int inicio = sldInicio.getValue();
         int fim = sldFim.getValue();
         
-        if(fim <= inicio){
-            sldFim.setValue(inicio + 1); 
-        }else{
-            lblFim.setText(Integer.toString(fim));
-            sldPasso.setMaximum(fim - inicio);
+        /**
+         * Compara se o fim é menor que o começo, caso seja, altera o inicio
+         */
+        if (fim <= inicio) {
+            inicio = fim - 1;
+            sldInicio.setValue(inicio); 
         }
+        /** 
+         * Mostra o valor de inicio e define o número máximo de passos
+         */
+        
+        lblFim.setText(Integer.toString(fim));
+        int maxPasso = Math.max(fim - inicio, 1);
+        sldPasso.setMaximum(maxPasso);
         
     }//GEN-LAST:event_sldFimStateChanged
-
+    
+    /**
+     * Método chamado quando o slider de passo é alterado.
+     * Atualiza o label de passo conforme o valor selecionado.
+     */
     private void sldPassoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldPassoStateChanged
         // TODO add your handling code here:
-        int inicio = sldInicio.getValue();
-        int fim = sldFim.getValue();
-        
-        int passosTotais = fim - inicio;
-        
-        sldPasso.setMaximum(passosTotais);
         int passo = sldPasso.getValue();
         lblPasso.setText(Integer.toString(passo));
     }//GEN-LAST:event_sldPassoStateChanged
-
+    
+    /**
+     * Esse método é acionado quando o butão btnContar é clicado 
+     */
+    
     private void btnContarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContarActionPerformed
         // TODO add your handling code here:
+        
+        /**
+         * Obtém os valores atuais dos três sliders (início, fim, passo).
+         */
+        
         int inicio = sldInicio.getValue();
         int fim = sldFim.getValue();
         int passo = sldPasso.getValue();
         
+        /**
+         * impa o conteúdo atual da área de texto antes de exibir a nova contagem.
+         */
         txtArea.setText("");
-
+        
+       /**
+        * Impressão dos números no text area
+        */
         for(int i = inicio; i <= fim; i = i + passo){
            txtArea.append(i + "\n");
         }
