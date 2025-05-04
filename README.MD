@@ -1,3 +1,14 @@
-Atividades da Disciplina de POO | Professor Jonatas.
+# Atividades de POO 2025.1
 
-Feito por: Igo Machado dos Santos
+Esse Repositório de como objetivo adicionar todas as atividades da disciplina de Programação Orientada a Objeto.
+
+
+## Professor: Jonatas Bastos
+## Feito por: Igo Machado  
+
+# Atividades Feitas até esse momento...
+
+- Atividade 03: ✅
+- Atividade 04: ✅
+- Atividade 05: ✅
+
