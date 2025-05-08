@@ -16,12 +16,19 @@ import javax.swing.JOptionPane;
 public class Vetor extends javax.swing.JFrame {
 
    int vet[] = new int [5];
-    DefaultListModel lista = new DefaultListModel(); 
+   // Modelo de lista para armazenar os elementos do vetor e exibi-los na interface gráfica
+    DefaultListModel lista = new DefaultListModel();
+    
+     /**
+     * Construtor da classe Vetor. Inicializa a interface gráfica, define
+     * o valor inicial do spinner e carrega o vetor na lista para exibição.
+     */
     
     public Vetor() {
         initComponents();
+        //Define o valor do spinner em 10 inicial
         spnNumEscolhido.setValue(10);
-        
+        //Inicia a lista. 
         for(int i = 0; i < vet.length; i++){
             lista.addElement("["+i+"] <=> " + vet[i]);
         }
@@ -59,7 +66,7 @@ public class Vetor extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lstVetor);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 120, 260));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 160, 260));
 
         btnAdicionar.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
         btnAdicionar.setText("Adicionar");
@@ -112,40 +119,66 @@ public class Vetor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /**
+     * Método que é chamado quando o botão de adicionar é pressionado.
+     * Atualiza o valor do vetor na posição selecionada com o valor do spinner,
+     * e atualiza a lista na interface gráfica.
+     */
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
+        // Obtém o índice do elemento selecionado na lista
         int indiceVet = lstVetor.getAnchorSelectionIndex();
+        
         lblTextoSelecao.setText(Integer.toString(indiceVet));
+        // Atribui o valor do spinner à posição selecionada no vetor
         vet[indiceVet]= (int) spnNumEscolhido.getValue();
+        //limpa todos os elementos da lista. 
         lista.removeAllElements();
+        // Atualiza a lista de elementos exibida na interface gráfica
         for(int i = 0; i < vet.length; i++){
             lista.addElement("["+i+"] <=> " + vet[i]);
         }
         lstVetor.setModel(lista);
-        
-        
+   
     }//GEN-LAST:event_btnAdicionarActionPerformed
-
+    
+    /**
+     * Método chamado ao pressionar o botão de remover.
+     * Remove o valor na posição selecionada do vetor (define como 0),
+     * e atualiza a lista na interface gráfica.
+     */
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
+        // Obtém o índice do elemento selecionado na lista
         int indiceVet = lstVetor.getAnchorSelectionIndex();
+        // Atribui o valor do spinner à posição selecionada no vetor
         lblTextoSelecao.setText(Integer.toString(indiceVet));
+        //adicionado 0 na posição escolhida. 
         vet[indiceVet]= 0;
+        //remoção de todos os elementos da lista
         lista.removeAllElements();
+         // Atualiza a lista de elementos exibida na interface gráfica
         for(int i = 0; i < vet.length; i++){
             lista.addElement("["+i+"] <=> " + vet[i]);
         }
         lstVetor.setModel(lista);
         
     }//GEN-LAST:event_btnRemoverActionPerformed
-
+    /**
+     * Método chamado ao pressionar o botão de ordenar em ordem decrescente.
+     * Ordena os elementos do vetor em ordem decrescente e atualiza a lista na interface gráfica.
+     */
     private void btnOrdenarDecrecenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarDecrecenteActionPerformed
         // TODO add your handling code here:
+         // Ordena o vetor em ordem crescente
         Arrays.sort(vet);
+        //Cria uma copia do vetor em ordem decrescente; 
         int vetCopia[] = new int[vet.length];
         for (int i = 0; i < vet.length; i++) {
-            vetCopia[i] = vet[vet.length - 1 - i];
+            vetCopia[i] = vet[vet.length - 1 - i]; // Re-adiciona os elementos decrescentes 
         }
+        //limpa a lista.
         lista.removeAllElements();
         for(int i = 0; i < vetCopia.length; i++){
             lista.addElement("["+i+"] <=> " + vetCopia[i]);
@@ -153,18 +186,31 @@ public class Vetor extends javax.swing.JFrame {
         lstVetor.setModel(lista);
         
     }//GEN-LAST:event_btnOrdenarDecrecenteActionPerformed
-
+    
+     /**
+     * Método chamado ao clicar em um item da lista.
+     * Exibe o índice do item selecionado.
+     */
     private void lstVetorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstVetorMouseClicked
         // TODO add your handling code here:
+         // Obtém o índice do item selecionado na lista
         int indiceVet = lstVetor.getAnchorSelectionIndex();
+         // Exibe o índice selecionado
         lblTextoSelecao.setText(Integer.toString(indiceVet));
     }//GEN-LAST:event_lstVetorMouseClicked
-
+    
+      /**
+     * Método chamado ao pressionar o botão de ordenar em ordem crescente.
+     * Ordena os elementos do vetor em ordem crescente e atualiza a lista na interface gráfica.
+     */
     private void btnOrdenarCrescenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenarCrescenteActionPerformed
         // TODO add your handling code here:
+        //ordena o vetor em ordem crescente. 
         Arrays.sort(vet);
         lista.removeAllElements();
+        // Atualiza a lista de elementos exibida na interface gráfica
         for(int i = 0; i < vet.length; i++){
+            // Re-adiciona os elementos ordenados
             lista.addElement("["+i+"] <=> " + vet[i]);
         }
         lstVetor.setModel(lista);
