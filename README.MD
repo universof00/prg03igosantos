@@ -12,4 +12,5 @@ Esse Repositório de como objetivo adicionar todas as atividades da disciplina d
 - Atividade 04: ✅
 - Atividade 05: ✅
 - Atividade 06: ✅
+- Atividade 07: ✅
 
