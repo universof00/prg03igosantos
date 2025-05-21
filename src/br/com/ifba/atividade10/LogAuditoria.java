@@ -10,6 +10,11 @@ import java.time.LocalDateTime;
  *
  * @author igo2
  */
+
+
+/**
+ * Representa um log de auditoria de ações de um usuário.
+ */
 public class LogAuditoria {
       private Long id;
     private Usuario usuario;
@@ -19,7 +24,15 @@ public class LogAuditoria {
 
     public LogAuditoria() {
     }
-
+    
+      /**
+     * Construtor com todos os campos.
+     * @param id ID do log
+     * @param usuario Usuário relacionado
+     * @param acao Descrição da ação
+     * @param dataHora Data e hora da ação
+     * @param ip IP de origem
+     */
     public LogAuditoria(Long id, Usuario usuario, String acao, LocalDateTime dataHora, String ip) {
         this.id = id;
         this.usuario = usuario;

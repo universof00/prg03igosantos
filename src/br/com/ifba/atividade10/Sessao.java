@@ -8,15 +8,25 @@ package br.com.ifba.atividade10;
  *
  * @author igo2
  */
+
+/**
+ * Representa uma sessão de login de um usuário.
+ */
 public class Sessao {
     
-   private Long id;
+    private Long id;
     private Usuario usuario;
     private String token;
 
     public Sessao() {
     }
-
+    
+       /**
+     * Construtor com atributos.
+     * @param id ID da sessão
+     * @param usuario Usuário associado
+     * @param token Token de autenticação
+     */
     public Sessao(Long id, Usuario usuario, String token) {
         this.id = id;
         this.usuario = usuario;

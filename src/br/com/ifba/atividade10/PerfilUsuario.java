@@ -10,6 +10,12 @@ import java.util.List;
  *
  * @author igo2
  */
+
+
+/**
+ * Classe que representa o perfil de um usuário no sistema.
+ * Cada perfil possui uma descrição e uma lista de permissões.
+ */
 public class PerfilUsuario {
      private Long id;
     private String descricao;
@@ -21,8 +27,11 @@ public class PerfilUsuario {
     public PerfilUsuario() {
     }
 
-    /**
+     /**
      * Construtor com todos os atributos.
+     * @param id Identificador do perfil
+     * @param descricao Descrição do perfil
+     * @param permissoes Lista de permissões
      */
     public PerfilUsuario(Long id, String descricao, List<String> permissoes) {
         this.id = id;

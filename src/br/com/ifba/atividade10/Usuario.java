@@ -12,6 +12,10 @@ import java.util.List;
  *
  * @author igo2
  */
+
+/**
+ * Representa um usuário do sistema.
+ */
 public class Usuario {
     
     private Long id;
@@ -26,7 +30,16 @@ public class Usuario {
 
     public Usuario() {
     }
-
+    
+     /**
+     * Construtor com atributos principais.
+     * @param id ID do usuário
+     * @param perfil Perfil associado
+     * @param nomeUsuario Nome de login
+     * @param email E-mail
+     * @param senha Senha
+     * @param ativo Status do usuário
+     */
     public Usuario(Long id, PerfilUsuario perfil, String nomeUsuario, String email, String senha, boolean ativo) {
         this.id = id;
         this.perfil = perfil;
